@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>PROMISETECH247 • Digital Product Mastery</title>
+  <!-- Font Awesome 6 for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: #0F172A;
+      color: #e2e8f0;
+      line-height: 1.5;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background: #0B1120;
+      padding: 2rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid rgba(34, 197, 94, 0.15);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      transition: all 0.2s ease;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 2.5rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo i {
+      color: #22C55E;
+      font-size: 1.8rem;
+    }
+
+    .nav-menu {
+      list-style: none;
+      flex: 1;
+    }
+
+    .nav-item {
+      margin-bottom: 0.5rem;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      color: #94a3b8;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .nav-link i {
+      width: 20px;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .nav-link.active {
+      background: rgba(34, 197, 94, 0.12);
+      color: #22C55E;
+      font-weight: 600;
+    }
+
+    .nav-link:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.03);
+      color: #cbd5e1;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      font-size: 0.8rem;
+      color: #475569;
+      border-top: 1px solid #1e293b;
+      padding-top: 1.2rem;
+    }
+
+    .student-profile-mini {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      background: #22C55E;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #0F172A;
+      font-size: 1.1rem;
+    }
+
+    /* Main content */
+    .main-content {
+      flex: 1;
+      padding: 1.8rem 2.5rem;
+      overflow-y: auto;
+      max-height: 100vh;
+    }
+
+    .welcome-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.8rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .welcome-text h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .welcome-text p {
+      color: #94a3b8;
+      margin-top: 0.2rem;
+    }
+
+    .progress-card {
+      background: #1E293B;
+      border-radius: 20px;
+      padding: 1.3rem 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      border: 1px solid #334155;
+    }
+
+    .progress-circle {
+      width: 60px;
+      height: 60px;
+      position: relative;
+    }
+
+    .progress-text {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #22C55E;
+    }
+
+    .progress-label {
+      color: #cbd5e1;
+      font-size: 0.9rem;
+    }
+
+    .progress-bar-bg {
+      background: #334155;
+      height: 8px;
+      border-radius: 10px;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 8px;
+      background: #22C55E;
+      border-radius: 10px;
+      transition: width 0.5s ease;
+    }
+
+    .congrats-badge {
+      background: rgba(34, 197, 94, 0.15);
+      color: #22C55E;
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .module-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      margin: 2rem 0 2.5rem;
+    }
+
+    .module-card {
+      background: #1E293B;
+      border-radius: 24px;
+      padding: 1.5rem;
+      border: 1px solid #334155;
+      transition: all 0.2s;
+    }
+
+    .module-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .module-header i {
+      font-size: 2rem;
+      color: #22C55E;
+    }
+
+    .module-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .module-duration {
+      background: #0F172A;
+      padding: 0.2rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: #22C55E;
+    }
+
+    .lesson-list {
+      list-style: none;
+      margin: 0.8rem 0 1rem;
+      color: #cbd5e1;
+      font-size: 0.9rem;
+    }
+
+    .lesson-list li {
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .lesson-list i {
+      color: #22C55E;
+      font-size: 0.8rem;
+    }
+
+    .video-wrapper {
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 1rem 0 1.2rem;
+      background: #0F172A;
+    }
+
+    iframe {
+      width: 100%;
+      height: 280px;
+      border: none;
+      display: block;
+    }
+
+    .watch-btn {
+      background: #22C55E;
+      color: #0F172A;
+      font-weight: 700;
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .watch-btn:hover {
+      background: #16a34a;
+    }
+
+    .bonus-section {
+      background: #1E293B;
+      border-radius: 24px;
+      padding: 1.8rem;
+      margin: 2rem 0;
+      border: 1px solid #334155;
+    }
+
+    .bonus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .bonus-item {
+      background: #0F172A;
+      padding: 0.9rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+    }
+
+    .download-btn {
+      background: transparent;
+      border: 1px solid #22C55E;
+      color: #22C55E;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-left: auto;
+    }
+
+    .download-btn:hover {
+      background: #22C55E;
+      color: #0F172A;
+    }
+
+    .community-box {
+      background: #0F172A;
+      border-radius: 20px;
+      padding: 1.3rem;
+      margin: 1.8rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .whatsapp-btn {
+      background: #25D366;
+      color: white;
+      padding: 0.7rem 1.4rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .faq {
+      margin: 2rem 0;
+    }
+
+    .faq-item {
+      background: #1E293B;
+      border-radius: 16px;
+      padding: 1rem 1.3rem;
+      margin-bottom: 0.8rem;
+      border-left: 4px solid #22C55E;
+    }
+
+    .congrats-final {
+      background: linear-gradient(145deg, #1E293B, #0F172A);
+      border-radius: 24px;
+      padding: 2rem;
+      text-align: center;
+      border: 1px solid #22C55E;
+      margin: 2rem 0;
+    }
+
+    .sticky-help {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #22C55E;
+      color: #0F172A;
+      border-radius: 40px;
+      padding: 0.8rem 1.4rem;
+      font-weight: bold;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      z-index: 1000;
+      cursor: pointer;
+      border: none;
+    }
+
+    @media (max-width: 850px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 1.2rem;
+      }
+      .main-content {
+        padding: 1.2rem;
+      }
+      iframe {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <i class="fas fa-cube"></i> PROMISETECH247
+    </div>
+    <ul class="nav-menu">
+      <li class="nav-item"><a href="#" class="nav-link active"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-play-circle"></i> Modules</a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-gift"></i> Resources</a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-comments"></i> Community</a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-certificate"></i> Certificate</a></li>
+    </ul>
+    <div class="sidebar-footer">
+      <div class="student-profile-mini">
+        <div class="avatar">👤</div>
+        <div>
+          <div style="color:white; font-weight:600;">Student</div>
+          <div style="color:#22C55E; font-size:0.75rem;">Active member</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Dashboard -->
+  <main class="main-content">
+    <div class="welcome-row">
+      <div class="welcome-text">
+        <h1>Welcome Back 👋</h1>
+        <p>Digital Product Mastery • Let's build your business</p>
+      </div>
+      <div class="progress-card">
+        <div>
+          <span class="progress-text" id="progressPercentage">0%</span>
+          <div class="progress-label">Course Progress</div>
+          <div class="progress-bar-bg">
+            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+          </div>
+        </div>
+        <div class="congrats-badge" id="completionBadge">0/2 done</div>
+      </div>
+    </div>
+
+    <p style="color:#94a3b8; margin-bottom:0.5rem;"><i class="fas fa-info-circle" style="color:#22C55E;"></i> Watch lessons in order for the best experience.</p>
+
+    <!-- Modules -->
+    <div class="module-grid">
+      <!-- Module 1 -->
+      <div class="module-card" id="module1">
+        <div class="module-header">
+          <i class="fas fa-robot"></i>
+          <div>
+            <div class="module-title">Module 1: Create Digital Product with AI</div>
+            <span class="module-duration"><i class="far fa-clock"></i> Beginner Friendly</span>
+          </div>
+        </div>
+        <ul class="lesson-list">
+          <li><i class="fas fa-check-circle"></i> Profitable product ideas</li>
+          <li><i class="fas fa-check-circle"></i> AI creation (eBooks, courses, templates)</li>
+          <li><i class="fas fa-check-circle"></i> Export & package products</li>
+        </ul>
+        <div class="video-wrapper">
+          <iframe id="video1" src="https://www.youtube.com/embed/_YY-8C1VR9o" title="Module 1 video" allowfullscreen></iframe>
+        </div>
+        <button class="watch-btn" id="markModule1Done"><i class="fas fa-check"></i> Mark as Completed</button>
+        <span style="margin-left:1rem; color:#22C55E;" id="module1Status">🔴 Not watched</span>
+      </div>
+
+      <!-- Module 2 -->
+      <div class="module-card" id="module2">
+        <div class="module-header">
+          <i class="fas fa-store"></i>
+          <div>
+            <div class="module-title">Module 2: Build Website & Sell Products</div>
+            <span class="module-duration"><i class="far fa-clock"></i> Ads & Payment</span>
+          </div>
+        </div>
+        <ul class="lesson-list">
+          <li><i class="fas fa-check-circle"></i> Sales website & landing pages</li>
+          <li><i class="fas fa-check-circle"></i> Connect payment gateways</li>
+          <li><i class="fas fa-check-circle"></i> Facebook & TikTok Ads</li>
+        </ul>
+        <div class="video-wrapper">
+          <iframe id="video2" src="https://www.youtube.com/embed/Afh3ET7Ew3U" title="Module 2 video" allowfullscreen></iframe>
+        </div>
+        <button class="watch-btn" id="markModule2Done"><i class="fas fa-check"></i> Mark as Completed</button>
+        <span style="margin-left:1rem; color:#22C55E;" id="module2Status">🔴 Not watched</span>
+      </div>
+    </div>
+
+    <!-- Bonus Resources -->
+    <div class="bonus-section">
+      <h3 style="display:flex; align-items:center; gap:0.5rem;"><i class="fas fa-gift" style="color:#22C55E;"></i> Bonus Resources</h3>
+      <div class="bonus-grid">
+        <div class="bonus-item"><i class="far fa-file-alt"></i> Website Template <button class="download-btn"><i class="fas fa-download"></i> Download</button></div>
+        <div class="bonus-item"><i class="far fa-file"></i> Landing Page <button class="download-btn"><i class="fas fa-download"></i> Download</button></div>
+        <div class="bonus-item"><i class="fas fa-robot"></i> AI Prompts <button class="download-btn"><i class="fas fa-download"></i> Download</button></div>
+        <div class="bonus-item"><i class="fab fa-facebook"></i> FB Ad Checklist <button class="download-btn"><i class="fas fa-download"></i> Download</button></div>
+        <div class="bonus-item"><i class="fab fa-tiktok"></i> TikTok Checklist <button class="download-btn"><i class="fas fa-download"></i> Download</button></div>
+        <div class="bonus-item"><i class="far fa-lightbulb"></i> Product Ideas <button class="download-btn"><i class="fas fa-download"></i> Download</button></div>
+      </div>
+    </div>
+
+    <!-- Community -->
+    <div class="community-box">
+      <div><i class="fas fa-users" style="color:#22C55E;"></i> <strong>Student Community</strong><br><small>Need help? Join our support group.</small></div>
+      <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
+        <a href="#" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Join WhatsApp</a>
+        <a href="#" style="background:#334155; color:white; padding:0.7rem 1.4rem; border-radius:30px; text-decoration:none;"><i class="fas fa-headset"></i> Contact Support</a>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq">
+      <h3 style="margin-bottom:1rem;">❓ Frequently Asked Questions</h3>
+      <div class="faq-item"><strong>Can I rewatch?</strong> Yes, lifetime access.</div>
+      <div class="faq-item"><strong>Mobile friendly?</strong> Yes, laptop recommended for building.</div>
+      <div class="faq-item"><strong>Updates?</strong> Yes, you'll get all future lessons.</div>
+    </div>
+
+    <!-- Congratulations (dynamic) -->
+    <div class="congrats-final" id="congratsSection" style="display: none;">
+      <h2 style="color:#22C55E; font-size:2rem;">🎉 Congratulations!</h2>
+      <p style="margin:1rem 0;">You now understand how to:</p>
+      <p>✅ Create digital products &nbsp; ✅ Build sales website<br>✅ Market with Facebook &nbsp; ✅ Market with TikTok</p>
+      <button class="watch-btn" style="margin-top:1.2rem; background:#22C55E;"><i class="fas fa-rocket"></i> Start Building Your First Product</button>
+    </div>
+    <div style="margin-top:1rem; color:#475569;">🏆 Certificate available upon completion.</div>
+  </main>
+
+  <!-- Sticky help button -->
+  <button class="sticky-help"><i class="fas fa-question-circle"></i> Need Help?</button>
+
+  <script>
+    (function() {
+      // State for module completion
+      const module1Completed = { value: false };
+      const module2Completed = { value: false };
+
+      function updateProgress() {
+        const completedCount = (module1Completed.value ? 1 : 0) + (module2Completed.value ? 1 : 0);
+        const percentage = completedCount === 0 ? 0 : completedCount === 1 ? 50 : 100;
+        
+        document.getElementById('progressPercentage').textContent = percentage + '%';
+        document.getElementById('progressFill').style.width = percentage + '%';
+        document.getElementById('completionBadge').textContent = completedCount + '/2 done';
+        
+        // Update status texts
+        document.getElementById('module1Status').innerHTML = module1Completed.value ? '✅ Completed' : '🔴 Not watched';
+        document.getElementById('module2Status').innerHTML = module2Completed.value ? '✅ Completed' : '🔴 Not watched';
+        
+        // Show congratulations if both completed
+        const congrats = document.getElementById('congratsSection');
+        if (completedCount === 2) {
+          congrats.style.display = 'block';
+        } else {
+          congrats.style.display = 'none';
+        }
+
+        // Optional: store in localStorage
+        localStorage.setItem('promisetech_progress', JSON.stringify({
+          mod1: module1Completed.value,
+          mod2: module2Completed.value
+        }));
+      }
+
+      // Load from storage if exists
+      function loadProgress() {
+        try {
+          const saved = localStorage.getItem('promisetech_progress');
+          if (saved) {
+            const data = JSON.parse(saved);
+            if (data.mod1) module1Completed.value = true;
+            if (data.mod2) module2Completed.value = true;
+          }
+        } catch (e) {}
+        updateProgress();
+      }
+
+      // Mark module 1 done
+      document.getElementById('markModule1Done').addEventListener('click', function() {
+        module1Completed.value = true;
+        updateProgress();
+        // Small visual feedback
+        alert('Module 1 marked as complete! 🎉');
+      });
+
+      // Mark module 2 done
+      document.getElementById('markModule2Done').addEventListener('click', function() {
+        module2Completed.value = true;
+        updateProgress();
+        alert('Module 2 marked as complete! 🚀');
+      });
+
+      // Download buttons simulation (non-functional, just demo)
+      document.querySelectorAll('.download-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          alert('Resource download will be available soon. (Demo)');
+        });
+      });
+
+      // Sticky help button
+      document.querySelector('.sticky-help').addEventListener('click', function() {
+        alert('Support: Send a message via WhatsApp or contact support. (Demo)');
+      });
+
+      // WhatsApp / support demo
+      document.querySelector('.whatsapp-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Join WhatsApp community (demo link).');
+      });
+
+      // Initial load
+      loadProgress();
+    })();
+  </script>
+</body>
+</html>
