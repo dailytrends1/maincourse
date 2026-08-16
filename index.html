@@ -455,7 +455,7 @@
             <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
           </div>
         </div>
-        <div class="congrats-badge" id="completionBadge">0/2 done</div>
+        <div class="congrats-badge" id="completionBadge">0/3 done</div>
       </div>
     </div>
 
@@ -504,6 +504,27 @@
         <button class="watch-btn" id="markModule2Done"><i class="fas fa-check"></i> Mark as Completed</button>
         <span style="margin-left:1rem; color:#22C55E;" id="module2Status">🔴 Not watched</span>
       </div>
+
+      <!-- Module 3: Affiliate Marketing (NEW) -->
+      <div class="module-card" id="module3">
+        <div class="module-header">
+          <i class="fas fa-link"></i>
+          <div>
+            <div class="module-title">Module 3: EVERYTHING YOU NEED TO KNOW ABOUT AFFILIATE MARKETING</div>
+            <span class="module-duration"><i class="far fa-clock"></i> Advanced</span>
+          </div>
+        </div>
+        <ul class="lesson-list">
+          <li><i class="fas fa-check-circle"></i> Affiliate marketing fundamentals</li>
+          <li><i class="fas fa-check-circle"></i> How to find high-commission programs</li>
+          <li><i class="fas fa-check-circle"></i> Promote products & earn commissions</li>
+        </ul>
+        <div class="video-wrapper">
+          <iframe id="video3" src="https://www.youtube.com/embed/ENmFgRFWgf8" title="Affiliate Marketing video" allowfullscreen></iframe>
+        </div>
+        <button class="watch-btn" id="markModule3Done"><i class="fas fa-check"></i> Mark as Completed</button>
+        <span style="margin-left:1rem; color:#22C55E;" id="module3Status">🔴 Not watched</span>
+      </div>
     </div>
 
     <!-- Bonus Resources -->
@@ -540,7 +561,7 @@
     <div class="congrats-final" id="congratsSection" style="display: none;">
       <h2 style="color:#22C55E; font-size:2rem;">🎉 Congratulations!</h2>
       <p style="margin:1rem 0;">You now understand how to:</p>
-      <p>✅ Create digital products &nbsp; ✅ Build sales website<br>✅ Market with Facebook &nbsp; ✅ Market with TikTok</p>
+      <p>✅ Create digital products &nbsp; ✅ Build sales website<br>✅ Market with Facebook &nbsp; ✅ Market with TikTok<br>✅ Affiliate marketing mastery</p>
       <button class="watch-btn" style="margin-top:1.2rem; background:#22C55E;"><i class="fas fa-rocket"></i> Start Building Your First Product</button>
     </div>
     <div style="margin-top:1rem; color:#475569;">🏆 Certificate available upon completion.</div>
@@ -551,34 +572,37 @@
 
   <script>
     (function() {
-      // State for module completion
+      // State for module completion (3 modules now)
       const module1Completed = { value: false };
       const module2Completed = { value: false };
+      const module3Completed = { value: false };
 
       function updateProgress() {
-        const completedCount = (module1Completed.value ? 1 : 0) + (module2Completed.value ? 1 : 0);
-        const percentage = completedCount === 0 ? 0 : completedCount === 1 ? 50 : 100;
+        const completedCount = (module1Completed.value ? 1 : 0) + (module2Completed.value ? 1 : 0) + (module3Completed.value ? 1 : 0);
+        const percentage = Math.round((completedCount / 3) * 100);
         
         document.getElementById('progressPercentage').textContent = percentage + '%';
         document.getElementById('progressFill').style.width = percentage + '%';
-        document.getElementById('completionBadge').textContent = completedCount + '/2 done';
+        document.getElementById('completionBadge').textContent = completedCount + '/3 done';
         
         // Update status texts
         document.getElementById('module1Status').innerHTML = module1Completed.value ? '✅ Completed' : '🔴 Not watched';
         document.getElementById('module2Status').innerHTML = module2Completed.value ? '✅ Completed' : '🔴 Not watched';
+        document.getElementById('module3Status').innerHTML = module3Completed.value ? '✅ Completed' : '🔴 Not watched';
         
-        // Show congratulations if both completed
+        // Show congratulations if all three completed
         const congrats = document.getElementById('congratsSection');
-        if (completedCount === 2) {
+        if (completedCount === 3) {
           congrats.style.display = 'block';
         } else {
           congrats.style.display = 'none';
         }
 
-        // Optional: store in localStorage
+        // Store in localStorage
         localStorage.setItem('promisetech_progress', JSON.stringify({
           mod1: module1Completed.value,
-          mod2: module2Completed.value
+          mod2: module2Completed.value,
+          mod3: module3Completed.value
         }));
       }
 
@@ -590,6 +614,7 @@
             const data = JSON.parse(saved);
             if (data.mod1) module1Completed.value = true;
             if (data.mod2) module2Completed.value = true;
+            if (data.mod3) module3Completed.value = true;
           }
         } catch (e) {}
         updateProgress();
@@ -599,7 +624,6 @@
       document.getElementById('markModule1Done').addEventListener('click', function() {
         module1Completed.value = true;
         updateProgress();
-        // Small visual feedback
         alert('Module 1 marked as complete! 🎉');
       });
 
@@ -608,6 +632,13 @@
         module2Completed.value = true;
         updateProgress();
         alert('Module 2 marked as complete! 🚀');
+      });
+
+      // Mark module 3 done (new)
+      document.getElementById('markModule3Done').addEventListener('click', function() {
+        module3Completed.value = true;
+        updateProgress();
+        alert('Module 3 marked as complete! 🎯 Affiliate Marketing unlocked.');
       });
 
       // Download buttons simulation (non-functional, just demo)
